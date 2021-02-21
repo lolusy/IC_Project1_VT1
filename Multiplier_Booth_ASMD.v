@@ -138,11 +138,10 @@ end // always@ (state, Start, BRC, Empty, w2_neg, m_is_1, m0)
 endmodule // Control_Unit
 
 module Datapath_Unit #(parameter L_word = 4)
-(  output reg [2*L_word-1: 0]       product,
-   output 		            Empty, w2_neg, m_is_1, m0;
-   input [L_word-1: 0] 	            A, x;
-   input 			    Load_words, Flush, Shift, Add, Sub, clk, reset
-);
+   (output reg [2*L_word-1: 0]      product,
+    output 		            Empty, w2_neg, m_is_1, m0,
+    input [L_word-1: 0] 	    A, x,
+    input 			    Load_words, Flush, Shift, Add, Sub, clk, reset);
 
    reg [2*L_word-1: 0] 		    multiplicand;
    reg [L_word-1:0] 		    multiplier;
@@ -180,7 +179,7 @@ always@(posedge clk, posedge reset)
 	product <= product + multiplicand;
      end
      if(Sub) begin
-	porduct <= product - multiplicand;
+	product <= product - multiplicand;
      end
   end // else: !if(reset)
 endmodule // Datapath_Unit
