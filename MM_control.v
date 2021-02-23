@@ -41,8 +41,9 @@ module MM_control (input  Start, clk, rst,
            addr_P = nn;
            r_next = r + 1;
 	   result_en = 0;
-	if(r_next==5) begin
+	if(r==5) begin
 	   next_state = op_wp;
+	   r_next = 4'h0;
 	   control = 0;
 	end
 	else begin
@@ -54,9 +55,9 @@ module MM_control (input  Start, clk, rst,
       op_wp:
 	begin
 	   result_en = 1;
-	   r_next = 4'h0;
+	   //r_next = 4'h0;
 	   nn_next = nn + 1;
-	if(nn_next==15) begin
+	if(nn==15) begin
 	   next_state = idle;
 	end
 	else begin
