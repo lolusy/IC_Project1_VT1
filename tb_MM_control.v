@@ -30,6 +30,8 @@
 
    initial begin
       rst = 1;
+      #1000
+      rst = 0;
       Start = 1;
       #10000
       $finish;
